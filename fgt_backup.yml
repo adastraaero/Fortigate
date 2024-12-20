@@ -1,0 +1,22 @@
+---
+- hosts: fgt
+  connection: httpapi
+  collections:
+    - fortinet.fortios
+  vars:
+    vdom: "root"
+    ansible_httpapi_use_ssl: true
+    ansible_httpapi_validate_certs: no
+    ansible_httpapi_port: 443
+    fortios_access_token: "14rxG8tb8p4ngxN96H5pkj5701zHjf"
+  tasks:
+  - name: Backup a virtual domain.
+    fortios_monitor:
+     access_token: "{{ fortios_access_token }}"
+     selector: 'backup.system.config'
+     vdom: "{{ vdom }}"
+     params:
+         scope: 'global'
+    register: backupinfo
+
+
